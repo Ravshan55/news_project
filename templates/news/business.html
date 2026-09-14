@@ -1,0 +1,31 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Business news {% endblock title %}
+
+{% block content %}
+<div class="container-fluid" style="padding: 40px 0;">
+    <h2><i class="fas fa-align-justify"></i> Business News</h2>
+    <div class="row">
+        {% for news in business_news %}
+        <div class="col-md-4" style="margin-bottom: 30px;">
+            <div class="cn-img">
+                {% if news.image %}
+                <a href="{{ news.get_absolute_url }}"><img src="{{ news.image.url }}" style="width: 100%; height: 220px; object-fit: cover;" /></a>
+                {% endif %}
+                <div class="cn-content">
+                    <div class="cn-content-inner">
+                        <p>{{ news.published_time }}</p>
+                        <a class="cn-title" href="{{ news.get_absolute_url }}">{{ news.title|truncatewords:8 }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No business news available yet.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}
+
