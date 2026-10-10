@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 
-from django.conf.global_settings import MEDIA_URL, MEDIA_ROOT, STATICFILES_DIRS, STATICFILES_FINDERS
+from django.conf.global_settings import MEDIA_URL, MEDIA_ROOT, STATICFILES_DIRS, STATICFILES_FINDERS, \
+    LOGIN_REDIRECT_URL, EMAIL_BACKEND, LOGOUT_REDIRECT_URL
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,13 +34,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main_app'
+    'main_app',
+    'hitcount'
 ]
 
 MIDDLEWARE = [
@@ -129,4 +132,9 @@ STATICFILES_FINDERS = [
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
 
+LOGIN_REDIRECT_URL = 'home_page'
+LOGOUT_REDIRECT_URL = 'home_page'
 
+EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
+
+LOGIN_URL = 'login'

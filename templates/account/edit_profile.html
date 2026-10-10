@@ -1,0 +1,17 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %} User profile edit {% endblock title %}
+
+{% block content %}
+
+    <h2> User profile edit </h2>
+    <p> Please fill the following form to change user profile information!</p>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+    <button type="submit">Sign up</button>
+    </form>
+
+
+
+{% endblock content %}

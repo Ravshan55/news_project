@@ -33,15 +33,17 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4">
                         <div class="logo">
-                            <a href="">
+                            <a href="{% url 'home_page' %}">
                                 <img src="{% static 'images/logo.png' %}" alt="Logo">
                             </a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-4">
                         <div class="search">
-                            <input type="text" placeholder="Search">
+                            <form method="get" action="{% url 'search_result' %}">
+                            <input type="text" placeholder="Search" name="q" class="form-control">
                             <button><i class="fa fa-search"></i></button>
+                            </form>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-4">
@@ -77,9 +79,18 @@
                             <a href="{% url 'science_news_page' %}" class="nav-item nav-link">Science</a>
                             <a href="{% url 'contact_page' %}" class="nav-item nav-link">Contact Us</a>
                             <a href="{% url 'about_page' %}" class="nav-item nav-link">About Us</a>
+                            {% if user.is_authenticated and user.is_superuser %}
+                            <a href="{% url 'admin_page' %}">Admin</a>
+                            {% endif %}
                             {% timezone "Europe/London" %}
                                 <p class="far fa-clock" style="color: white">{% now "jS F Y H:i"  %}</p>
                             {% endtimezone %}
+                            {% if request.user.is_authenticated %}
+                                <p><a href="{% url 'user_profile' %}" style="color: white">My profile</a></p>
+                                <p><a href="{% url 'logout_page' %}" style="color: white">Logout</a></p>
+                            {% else %}
+                                <p><a href="{% url 'login' %}" style="color: white">Login</a></p>
+                            {% endif %}
                         </div>
                     </div>
                 </nav>

@@ -1,0 +1,23 @@
+{% extends 'news/base.html' %}
+
+{% load static %}
+
+{% block title %} {{ news.title }} {% endblock title %}
+
+{% block content %}
+<!--    <h2 class="text-center">Delete news</h2>-->
+<!--    <form method="post">{% csrf_token %}-->
+<!--    <p>{{ news.title | truncatewords:4 }}... do you want to delete?</p>-->
+<!--    <button type="submit" class="btn btn-danger ml-2">Confirm</button>-->
+<!--    </form>-->
+<div class="container" style="padding: 40px 0;">
+    <h2>Delete "{{ object.title }}"?</h2>
+    <p>This action cannot be undone.</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yes, delete</button>
+        <a href="{{ object.get_absolute_url }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+{% endblock content %}

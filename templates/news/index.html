@@ -1,5 +1,6 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load hitcount_tags %}
 
 {% block title %} Home Page {% endblock title %}
 {% block content %}
@@ -16,7 +17,7 @@
                             <div class="tn-content">
                                 <div class="tn-content-inner">
                                     <p class="far fa-clock" style="color: white">{{ news.published_time }}</p>
-                                    <a class="tn-title" href="{{ news.get_absolute_url }}">{{ news.title }}</a>
+                                    <a class="tn-title" href="{{ news.get_absolute_url }}">{{ news.title }} | <i class="far fa-eye"></i> {% get_hit_count for news %}</a>
                                 </div>
                             </div>
                         </div>
@@ -32,7 +33,7 @@
                                     <img src="{{ news.image.url }}" />
                                     <div class="tn-content">
                                         <div class="tn-content-inner">
-                                            <a class="tn-title" style="font-size: small" href="{{ news.get_absolute_url }}">{{ news.title }}</a>
+                                            <a class="tn-title" style="font-size: small" href="{{ news.get_absolute_url }}">{{ news.title }} | <i class="far fa-eye"></i> {% get_hit_count for news %}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -61,7 +62,7 @@
                                     <div class="cn-content">
                                         <div class="cn-content-inner">
                                             <p>{{ news.published_time }}</p>
-                                            <a class="cn-title" href="{{ news.get_absolute_url }}">{{ news.title | truncatewords:6 }}</a>
+                                            <a class="cn-title" href="{{ news.get_absolute_url }}">{{ news.title | truncatewords:6 }} | <i class="far fa-eye"></i> {% get_hit_count for news %}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -79,7 +80,7 @@
                                     <div class="cn-content">
                                         <div class="cn-content-inner">
                                             <p>{{ news.published_time }}</p>
-                                            <a class="cn-title" href="{{ news.get_absolute_url }}">{{ news.title | truncatewords:6 }}</a>
+                                            <a class="cn-title" href="{{ news.get_absolute_url }}">{{ news.title | truncatewords:6 }} | <i class="far fa-eye"></i> {% get_hit_count for news %}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +108,7 @@
                                     <div class="cn-content">
                                         <div class="cn-content-inner">
                                             <p>{{ news.published_time }}</p>
-                                            <a class="cn-title" href="{{ news.get_absolute_url }}">{{ news.title | truncatewords:6 }}</a>
+                                            <a class="cn-title" href="{{ news.get_absolute_url }}">{{ news.title | truncatewords:6 }} | <i class="far fa-eye"></i> {% get_hit_count for news %}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -125,7 +126,7 @@
                                     <div class="cn-content">
                                         <div class="cn-content-inner">
                                             <p>{{ news.published_time }}</p>
-                                            <a class="cn-title" href="{{ news.get_absolute_url }}">{{ news.title | truncatewords:6 }}</a>
+                                            <a class="cn-title" href="{{ news.get_absolute_url }}">{{ news.title | truncatewords:6 }} | <i class="far fa-eye"></i> {% get_hit_count for news %}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -151,10 +152,10 @@
                                     <div class="col-lg-6">
                                         {% for news in news_list %}
                                         <div class="mn-img">
-                                            <img src="{{ news.image.url }}">
+                                            <a class="mn-title" href="{{ news.get_absolute_url }}"><img src="{{ news.image.url }}"></a>
                                         </div>
                                         <div class="mn-content">
-                                            <a class="mn-title" href="{{ news.get_absolute_url }}">{{ news.title | truncatewords:6 }}</a>
+                                            <a class="mn-title" href="{{ news.get_absolute_url }}">{{ news.title | truncatewords:6 }} | <i class="far fa-eye"></i> {% get_hit_count for news %}</a>
                                             <p>{{ news.published_time }}</p>
                                             <p>{{  news.title }}</p><br>
                                         </div>
@@ -167,7 +168,7 @@
                                                 <img src="{{ news.image.url }}" />
                                             </div>
                                             <div class="mn-content">
-                                                <a class="mn-title" href="{{ news.get_absolute_url }}">{{ news.title }}</a>
+                                                <a class="mn-title" href="{{ news.get_absolute_url }}">{{ news.title }} | <i class="far fa-eye"></i> {% get_hit_count for news %}</a>
                                                 <p>{{ news.published_time }}</p>
                                             </div>
                                         </div>

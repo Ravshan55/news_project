@@ -1,5 +1,6 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load hitcount_tags %}
 
 {% block title %} World news {% endblock title %}
 
@@ -16,7 +17,7 @@
                 <div class="cn-content">
                     <div class="cn-content-inner">
                         <p>{{ news.published_time }}</p>
-                        <a class="cn-title" href="{{ news.get_absolute_url }}">{{ news.title|truncatewords:8 }}</a>
+                        <a class="cn-title" href="{{ news.get_absolute_url }}">{{ news.title|truncatewords:8 }} | <i class="far fa-eye"></i> {% get_hit_count for news %}</a>
                     </div>
                 </div>
             </div>

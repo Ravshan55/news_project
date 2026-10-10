@@ -1,0 +1,16 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %} Logout {% endblock title %}
+
+{% block content %}
+
+    <h2> Logout </h2>
+    <form method="post" action="{% url 'logout' %}" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" class="nav-item nav-link" style="background: none; border: none; padding: 0;">
+            You logged out!
+        </button>
+    </form>
+    <a href="{% url 'login' %}"> Login </a>
+
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %} Search result {% endblock title %}
+
+{% block content %}
+
+    <h2> Search result </h2>
+    {% for news in all_news %}
+        <h4><a href="{% url 'news_detail_page' news.slug %}" class="text-danger">{{ news.title }}</a></h4>
+        <p><img src="{{ news.image.url }}" width="250px" style="margin: 10px"></p>
+        <p>{{ news.body | truncatewords:30 }}</p>
+
+
+
+    {% endfor %}
+
+
+
+{% endblock content %}

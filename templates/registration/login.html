@@ -1,0 +1,17 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %} Login {% endblock title %}
+
+{% block content %}
+
+    <h2> Login </h2>
+    <p> Please fill the following form!</p>
+    <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+    <button type="submit">Login</button>
+    </form>
+    <h4><a href="{% url 'user_register' %}" style="color: red">Sign up</a></h4>
+
+
+
+{% endblock content %}

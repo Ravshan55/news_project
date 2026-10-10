@@ -1,0 +1,16 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %} Register users. {% endblock title %}
+
+{% block content %}
+
+    <h2> User registration. </h2>
+    <p> Please fill the following form!</p>
+    <form method="post">{% csrf_token %}
+        {{ user_form.as_p }}
+    <button type="submit">Sign up</button>
+    </form>
+
+
+
+{% endblock content %}
