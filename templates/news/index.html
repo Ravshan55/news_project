@@ -1,12 +1,14 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load i18n %}
 {% load hitcount_tags %}
+
 
 {% block title %} Home Page {% endblock title %}
 {% block content %}
         <!-- Top News Start-->
         <div class="top-news">
-            <h2 style="font-weight: bold"><i class="fas fa-align-justify"></i>Latest News</h2>
+            <h2 style="font-weight: bold"><i class="fas fa-align-justify"></i>{% blocktranslate %}Latest News{% endblocktranslate %}</h2>
             <div class="container-fluid">
                 <div class="row">
                     {% for news in latest_news %}
@@ -53,7 +55,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">
-                        <h2><i class="fas fa-align-justify"></i>World</h2>
+                        <h2><i class="fas fa-align-justify"></i>{% blocktranslate %} World {% endblocktranslate %}</h2>
                         <div class="row cn-slider">
                             {% for news in world_news %}
                             <div class="col-md-6">
@@ -71,7 +73,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <h2><i class="fas fa-align-justify"></i>Technology</h2>
+                        <h2><i class="fas fa-align-justify"></i>{% blocktranslate %} Technology {% endblocktranslate %}</h2>
                         <div class="row cn-slider">
                             {% for news in technology_news %}
                             <div class="col-md-6">
@@ -99,7 +101,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">
-                        <h2><i class="fas fa-align-justify"></i>Business</h2>
+                        <h2><i class="fas fa-align-justify"></i>{% blocktranslate %} Business {% endblocktranslate %}</h2>
                         <div class="row cn-slider">
                             {% for news in business_news %}
                             <div class="col-md-6">
@@ -117,7 +119,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <h2><i class="fas fa-align-justify"></i>Science</h2>
+                        <h2><i class="fas fa-align-justify"></i>{% blocktranslate %} Science {% endblocktranslate %}</h2>
                         <div class="row cn-slider">
                             {% for news in science_news %}
                             <div class="col-md-6">
@@ -147,7 +149,7 @@
                     <div class="col-md-8">
                         <div class="row">
                             <div class="col-md-12">
-                                <h2><i class="fas fa-align-justify"></i>Latest News</h2>
+                                <h2><i class="fas fa-align-justify"></i>{% blocktranslate %} Latest News {% endblocktranslate %}</h2>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         {% for news in news_list %}
@@ -246,11 +248,14 @@
                     <div class="col-md-4">
                         <div class="sidebar">
                             <div class="sidebar-widget">
-                                <h2><i class="fas fa-align-justify"></i>Category</h2>
+                                <h2><i class="fas fa-align-justify"></i>{% blocktranslate %}Category {% endblocktranslate %}</h2>
                                 <div class="category">
                                     <ul class="fa-ul">
                                         {% for category in categories %}
-                                        <li><span class="fa-li"><i class="far fa-arrow-alt-circle-right"></i></span><a href="{% url 'category_news' category.name|lower %}">{{ category.name }}</a></li>
+                                            {% if category.slug %}
+                                            <li><span class="fa-li"><i class="far fa-arrow-alt-circle-right"></i></span>
+                                                <a href="{% url 'category_news' category.slug %}">{{ category.name }}</a></li>
+                                            {% endif %}
                                         {% endfor %}
                                     </ul>
                                 </div>
@@ -259,9 +264,10 @@
                             <div class="sidebar-widget">
                                 <h2><i class="fas fa-align-justify"></i>Tags</h2>
                                 {% for category in categories %}
-                                <div class="tags">
-                                    <a href="{% url 'category_news' category.name|lower %}">{{ category.name }}</a>
-                                </div>
+                                    {% if category.slug %}
+                                    <li><span class="fa-li"><i class="far fa-arrow-alt-circle-right"></i></span>
+                                        <a href="{% url 'category_news' category.slug %}">{{ category.name }}</a></li>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
 
